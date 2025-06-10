@@ -1,0 +1,64 @@
+/* AvatarUpload.css */
+.avatar-upload-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 15px; /* Khoảng cách giữa các phần tử */
+  padding: 20px;
+  max-width: 100%;
+  margin: 0 auto; /* Canh giữa trên trang */
+  background-color: #f9f9f9; /* Màu nền nhẹ */
+  border-radius: 8px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Hiệu ứng bóng */
+}
+
+.avatar-upload-container input[type="file"] {
+  display: none; /* Ẩn input mặc định, dùng label thay thế */
+}
+
+.avatar-upload-container label {
+  display: inline-block;
+  padding: 10px 20px;
+  background-color: #4a90e2; /* Màu nền nút */
+  color: white;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.avatar-upload-container label:hover {
+  background-color: #357abd; /* Màu khi hover */
+}
+
+.avatar-upload-container .preview-img {
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  overflow: hidden;
+}
+
+.avatar-upload-container button {
+  padding: 10px 20px;
+  background-color: #4a90e2;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s, opacity 0.3s;
+}
+
+.avatar-upload-container button:disabled {
+  background-color: #cccccc;
+  cursor: not-allowed;
+  opacity: 0.6;
+}
+
+.avatar-upload-container button:hover:not(:disabled) {
+  background-color: #357abd;
+}
+
+.avatar-upload-container .loading-img {
+  display: block;
+  margin-top: 10px;
+  width: 50px; /* Điều chỉnh kích thước GIF */
+  height: auto;
+}

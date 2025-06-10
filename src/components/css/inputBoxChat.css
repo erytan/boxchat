@@ -1,0 +1,17 @@
+.form-floating {
+  position: relative;
+  width: 100%;
+}
+
+.form-floating input {
+  width: 100%;
+  padding: 8px;
+  border: 1px solid #ccc;
+      position: relative;
+  border-radius: 4px;
+}
+
+.form-floating.focus input {
+  border-color: #007bff;
+  box-shadow: 0 0 5px rgba(0, 123, 255, 0.3);
+}

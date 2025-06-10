@@ -1,0 +1,579 @@
+.home-boxchat {}
+
+.home-container {
+    gap: 15px;
+    display: flex;
+    height: 715px;
+}
+
+.home-container .h-left {}
+
+.home-container .h-main {}
+
+.home-container .h-right {}
+
+.h-left .h-left-top {}
+
+
+.h-left .h-left-bottom {}
+
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.content-mission {
+    display: block;
+    align-items: center;
+    gap: 20px
+}
+
+.mission-title {
+    position: relative;
+    max-width: 100%;
+    width: 100%;
+}
+
+.mission-title::after {
+    content: "";
+    background-color: rgba(214, 194, 194, 0.741);
+    width: 100%;
+    height: 2px;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: #1a1a1a;
+    color: #fff;
+    padding: 10px;
+}
+
+.container {
+    display: flex;
+    gap: 10px;
+    height: 100vh;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.sidebar {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+
+    gap: 10px;
+}
+
+.Update-img {
+    padding: 20px;
+    border-radius: 12px;
+    min-width: 60%;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+    animation: slideDown 0.3s ease-out;
+    background: #1a1a1a;
+}
+
+.drop-down-user-list {
+    list-style-type: none;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.popup-container-update {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.3);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 999;
+    animation: fadeIn 0.3s ease-in-out;
+}
+
+.drop-down-update-user {
+    width: 100%;
+    padding: 5px 5px;
+    border-radius: 5px;
+
+}
+
+
+.drop-down-logout-user {
+    width: 100%;
+    padding: 5px 5px;
+    border-radius: 5px;
+
+}
+
+.main {
+    flex: 3;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.right-panel {
+    flex: 1.5;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.box {
+    background-color: #2a2a2a;
+    border-radius: 10px;
+    padding: 15px;
+    display: flex;
+    color: #fff;
+    position: relative;
+}
+
+.box-mission-done {
+    overflow: hidden;
+    transition: max-height 0.5s ease-out, opacity 0.5s ease-out;
+    max-height: 0;
+    opacity: 0;
+}
+
+.avatar-img {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    object-fit: cover;
+    display: flex;
+    justify-self: center;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.box-mission-done.slide-down {
+    max-height: 500px;
+    /* Điều chỉnh giá trị này phù hợp với nội dung thực tế */
+    opacity: 1;
+}
+
+.box-mission-done.slide-up {
+    max-height: 0;
+    opacity: 0;
+}
+
+#box-header {
+    display: flex;
+    align-items: center;
+    gap: 30px;
+    box-shadow: 8px 9px 11px 0px rgba(0, 0, 0, 0.3);
+    position: relative;
+    z-index: 2;
+    justify-content: space-between;
+}
+
+.drop-down-user {
+    position: absolute;
+    width: fit-content;
+    max-width: 100%;
+    background-color: #a79a9a;
+    z-index: 2;
+    bottom: -55px;
+    padding: 5px 10px;
+    border-radius: 10px;
+    box-shadow: 0px 5px 5px rgb(84 79 79);
+}
+
+#box-header.fixed {
+    position: sticky;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 999;
+    background-color: #2a2a2a;
+    /* hoặc màu bạn muốn */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    /* bóng nhẹ */
+}
+
+#box-header .btn {
+    font-size: 20px;
+}
+
+.sidebar .box-tree {
+    border-radius: 10px;
+    width: 75%;
+    position: absolute;
+    top: 0;
+    right: 0;
+    z-index: 1;
+}
+
+.sidebar .box:nth-child(1) {
+    height: 25%;
+}
+
+/* .dots::before{
+    content:"";
+    width: 50px;
+    height: 50px;
+    position: absolute;
+    top:10px;
+    background:red;
+} */
+
+.sidebar .box:nth-child(2) {
+    flex: 1;
+}
+
+.useInfor {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+}
+
+.box-mission-delete {
+    width: 24px;
+    height: 24px;
+    background-color: #3498db;
+    border-radius: 50%;
+    cursor: pointer;
+    position: relative;
+}
+
+.box-mission-delete::before {
+    content: "🗑";
+    color: white;
+    font-size: 18px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.mission-descript {
+    display: flex;
+    align-items: center;
+    gap: 3px;
+    margin: 5px 0px;
+}
+
+.task-mission {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+    margin-top: 15px;
+    position: relative;
+}
+
+.fade-slide {
+    opacity: 0;
+    transform: translateX(50px);
+    transition: all 0.3s ease;
+}
+
+/* Slide toggle xuống/up */
+.slide-down {
+    max-height: 1000px;
+    opacity: 1;
+    transition: all 0.5s ease;
+}
+
+.slide-up {
+    max-height: 0;
+    opacity: 0;
+    overflow: hidden;
+    transition: all 0.5s ease;
+}
+
+.drop-down-user-list li:hover {
+    background-color: #f5f5f5;
+    cursor: pointer;
+}
+
+.task-mission::after {
+    content: "";
+    width: 100%;
+    height: 2px;
+    position: absolute;
+    background-color: #f2f3f42b;
+    bottom: -10px;
+    left: 0;
+
+}
+
+.box-left {
+    background-color: #2a2a2a;
+    border-radius: 10px;
+    padding: 15px 10px;
+    color: #fff;
+    position: relative;
+    height: 100%;
+    max-height: 560px;
+    overflow-y: auto;
+    scrollbar-width: none;
+    /* Ẩn scrollbar Firefox */
+}
+
+.box #box-header {
+    width: 100%;
+    height: 15%;
+    border-radius: 10px;
+    background: white;
+    color: black;
+    font-size: 15px;
+    font-weight: 700;
+
+}
+
+.dotlist {
+    display: flex;
+    justify-content: center;
+    gap: 5px;
+    align-items: center;
+}
+
+.task-tick {
+    display: inline-block;
+    width: 10px;
+    height: 10px;
+    background-color: #f0f0f0;
+    border: 2px solid #ccc;
+    border-radius: 4px;
+    position: relative;
+    cursor: pointer;
+}
+
+.strikethrough {
+    text-decoration: line-through;
+}
+
+
+.sidebar .box .mission {
+    padding: 10px;
+    border: 1px solid #ccc;
+    display: inline-block;
+    cursor: pointer;
+}
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 20px;
+    position: relative;
+}
+
+.main-content {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 2rem;
+}
+
+.footer {
+    height: 100px;
+    display: flex;
+    gap: 10px;
+}
+
+.footer .box {
+    flex: 1;
+}
+
+.right-panel .box:nth-child(1) {
+    flex: 1;
+}
+
+.right-panel .box:nth-child(2) {
+    height: 200px;
+}
+
+.circle {
+    width: 30px;
+    height: 30px;
+    background-color: #555;
+    border-radius: 50%;
+}
+
+.dots {
+    display: flex;
+    gap: 5px;
+
+}
+
+.dot {
+    width: 10px;
+    height: 10px;
+    background-color: #555;
+    border-radius: 50%;
+}
+
+/* Popup add sidebar */
+.popup-container-mission-add {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.3);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 999;
+    animation: fadeIn 0.3s ease-in-out;
+}
+
+.popup-mission-add {
+    background: #fff;
+    padding: 20px;
+    border-radius: 12px;
+    min-width: 300px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+    animation: slideDown 0.3s ease-out;
+    background: #1a1a1a;
+}
+
+.pop-up-tiltle-mission {
+    color: #ffffff;
+}
+
+.popup-actions {
+    margin-top: 10px;
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
+}
+
+.form-control {
+    width: 100%;
+    margin: 15px 0;
+    border-radius: 5px;
+    border: 1px solid #2eb1c421;
+    height: 40px;
+}
+
+.form-control::placeholder {
+    color: #1a1a1a70;
+}
+
+.mission-cancel {
+    width: fit-content;
+    border-radius: 10px;
+    border: 1px solid #00000052;
+    padding: 0 20px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    box-shadow: 0px 4px 4px rgb(81 176 14 / 30%);
+    position: relative;
+    overflow: hidden;
+
+}
+
+.mission-add-btn {
+    width: fit-content;
+    border-radius: 10px;
+    border: 1px solid #00000052;
+    background: linear-gradient(134deg, #FFCDDA 2.01%, #9ce50d 100%);
+    display: flex;
+    align-items: center;
+    padding: 0 20px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    box-shadow: 0px 4px 4px rgb(81 176 14 / 30%);
+    position: relative;
+    overflow: hidden;
+
+}
+
+input.form-control {
+    background-color: #f9f9f9;
+    /* Nền */
+    letter-spacing: 1px;
+    padding-left: 10px
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: scale(0.95);
+    }
+
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+.box-mission-add {
+    width: 24px;
+    height: 24px;
+    background-color: #3498db;
+    border-radius: 50%;
+    cursor: pointer;
+    position: relative;
+}
+
+.box-mission-add::before {
+    content: "+";
+    color: white;
+    font-size: 18px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.box-mission-fix::before {
+    content: "⚙";
+    color: white;
+    font-size: 18px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.box-mission-fix {
+    width: 24px;
+    height: 24px;
+    background-color: #3498db;
+    border-radius: 50%;
+    cursor: pointer;
+    position: relative;
+}
+
+.mission-list {
+    max-height: 200px;
+    margin-bottom: 1rem;
+    overflow-y: scroll;
+    scrollbar-width: none;
+    /* Firefox */
+    -ms-overflow-style: none;
+    /* IE/Edge */
+}
+
+.mission-list::-webkit-scrollbar-track {
+
+    display: none;
+}
+
+.mission-item {
+    cursor: pointer;
+    padding: 8px;
+    background: #2a2a2a;
+    margin: 4px 0;
+    border-radius: 6px;
+    transition: 0.3s;
+}
+
+.mission-item:hover {
+    background: #ddd;
+}

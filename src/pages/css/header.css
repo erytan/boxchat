@@ -1,0 +1,44 @@
+.name-user{
+        font-weight: bold;
+}
+@media (max-width: 739px) {
+    .header {}
+
+    .header-contanier {}
+
+    .header-top {}
+
+    .header-bottom .name {
+        flex-direction: row-reverse;
+        display: flex;
+        align-items: end;
+
+    }
+
+    .header-bottom .name .nameuser {
+        transform: translateX(10px);
+    }
+
+    .header-bottom {
+        display: flex;
+
+    }
+
+    .header-bottom .header-logo {}
+
+    .header-bottom .header-logo img {}
+
+    .header-bottom .nameruser {}
+
+    .header-bottom .avatar-user {
+        position: relative;
+        width: 32px;
+        height: 32px;
+    }
+
+    .header-bottom .avatar-user img {
+        width: 32px;
+        height: 32px;
+        border-radius: 100%;
+    }
+}

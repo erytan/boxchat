@@ -1,0 +1,18 @@
+.cd-box-mission {
+    display: flex;
+    margin-top: 15px;
+    justify-content: space-between;
+    width: 100%;
+
+}
+
+.cd-box-mission h3 {
+    font-size: 16px;
+}
+
+.crud-sidebar-box {
+    display: flex;
+    justify-content: space-between;
+    gap: 10px;
+    z-index: 2;
+}
