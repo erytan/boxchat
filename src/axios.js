@@ -1,7 +1,7 @@
 import axios from 'axios'
 
 const instance = axios.create({
-    baseURL: 'http://localhost:8080/api',
+    baseURL: 'https://boxchat-server.onrender.com/api',
 })
 instance.interceptors.request.use(function (config) {
     let localStorageData = window.localStorage.getItem('persist:men/user')
