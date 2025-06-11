@@ -77,11 +77,11 @@ const Login = () => {
     email: "",
     password: "",
   });
+  const handleSubmit = useCallback(async (e) => {
+    e.preventDefault(); // ✅ Ngăn chặn reload
 
-  const handleSubmit = useCallback(async () => {
     const { email, password } = payload;
 
-    // Kiểm tra định dạng email
     const isValidEmail = /\S+@\S+\.\S+/.test(email);
     if (!isValidEmail) {
       setValidEmail(false);
@@ -92,21 +92,20 @@ const Login = () => {
       const rs = await apiLogin({ email, password });
       if (rs.success) {
         localStorage.setItem("accessToken", rs.accessToken);
-        
         localStorage.setItem("userData", JSON.stringify(rs.userData));
-        dispatch(
-          register({
-            isLoggedIn: true,
-            token: rs.accessToken,
-            userData: rs.userData,
-          })
-        );
+        dispatch(register({
+          isLoggedIn: true,
+          token: rs.accessToken,
+          userData: rs.userData,
+        }));
+
         handleClose();
+
         setTimeout(() => {
           if (rs.userData && rs.userData.role == 1) {
             navigate(`/${path.ADMIN}/te`);
           } else {
-            navigate(`/${path.HOME}`);
+            navigate(`/${path.HOME}`); // ✅ Đây là "/home"
           }
         }, 1500);
       } else {
@@ -116,6 +115,7 @@ const Login = () => {
       console.error("Error occurred:", error);
     }
   }, [payload, dispatch, navigate, current]);
+
   const handleForgotPasswordEr = async () => {
     try {
       if (sentAttempts >= 3) {
