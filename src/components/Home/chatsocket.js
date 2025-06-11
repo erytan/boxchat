@@ -5,7 +5,7 @@ import { apiRefreshAccessToken } from '../../apis/user';
 import '../../socket';
 
 // Quản lý Socket.IO ở cấp module
-const socketUrl = process.env.REACT_APP_API_URII || 'http://localhost:8080';
+const socketUrl = process.env.REACT_APP_API_URII || 'https://boxchat-server.onrender.com';
 let socketInstance = null;
 
 const initSocket = (token) => {
