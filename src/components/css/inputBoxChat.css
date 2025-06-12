@@ -3,15 +3,34 @@
   width: 100%;
 }
 
-.form-floating input {
+.form-floating textarea {
   width: 100%;
+  max-width: 100%; /* Chiều rộng cố định tối đa, giống các box chat */
   padding: 8px;
   border: 1px solid #ccc;
-      position: relative;
   border-radius: 4px;
+  font-size: 16px;
+  line-height: 1.5;
+  box-sizing: border-box;
+  overflow-x: hidden; /* Ngăn tràn ngang */
+  resize: none; /* Ngăn kéo dãn thủ công */
+  min-height: 40px; /* Chiều cao tối thiểu */
 }
 
-.form-floating.focus input {
+/* CSS khi focus */
+.form-floating.focus textarea {
   border-color: #007bff;
   box-shadow: 0 0 5px rgba(0, 123, 255, 0.3);
+}
+
+/* Tùy chỉnh label */
+.form-floating label {
+  position: absolute;
+  top: 0;
+  left: 0;
+  padding: 8px;
+  pointer-events: none;
+  transition: all 0.2s ease;
+  transform-origin: top left;
+  color: #666;
 }

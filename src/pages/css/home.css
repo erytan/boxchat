@@ -1,33 +1,46 @@
-.home-boxchat {}
-
-.home-container {
-    gap: 15px;
-    display: flex;
-    height: 715px;
-}
-
-.home-container .h-left {}
-
-.home-container .h-main {}
-
-.home-container .h-right {}
-
-.h-left .h-left-top {}
-
-
-.h-left .h-left-bottom {}
-
-
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
 
+body {
+    font-family: Arial, sans-serif;
+    background-color: #1a1a1a;
+    color: #fff;
+    padding: 10px;
+}
+
+.container {
+    display: flex;
+    gap: 10px;
+    height: 100vh;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.home-container {
+    gap: 15px;
+    display: flex;
+    height: auto;
+    /* Thay 715px bằng auto để linh hoạt */
+    min-height: 100vh;
+}
+
+.home-boxchat,
+.home-container .h-left,
+.home-container .h-main,
+.home-container .h-right,
+.h-left .h-left-top,
+.h-left .h-left-bottom {
+    /* Thêm các style nếu cần */
+}
+
 .content-mission {
-    display: block;
+    display: flex;
+    /* Sửa từ display: block để align-items hoạt động */
     align-items: center;
-    gap: 20px
+    gap: 20px;
 }
 
 .mission-title {
@@ -46,26 +59,10 @@
     left: 0;
 }
 
-body {
-    font-family: Arial, sans-serif;
-    background-color: #1a1a1a;
-    color: #fff;
-    padding: 10px;
-}
-
-.container {
-    display: flex;
-    gap: 10px;
-    height: 100vh;
-    max-width: 1200px;
-    margin: 0 auto;
-}
-
 .sidebar {
     flex: 1;
     display: flex;
     flex-direction: column;
-
     gap: 10px;
 }
 
@@ -86,7 +83,8 @@ body {
     gap: 5px;
 }
 
-.popup-container-update {
+.popup-container-update,
+.popup-container-mission-add {
     position: fixed;
     top: 0;
     left: 0;
@@ -100,19 +98,11 @@ body {
     animation: fadeIn 0.3s ease-in-out;
 }
 
-.drop-down-update-user {
-    width: 100%;
-    padding: 5px 5px;
-    border-radius: 5px;
-
-}
-
-
+.drop-down-update-user,
 .drop-down-logout-user {
     width: 100%;
-    padding: 5px 5px;
+    padding: 5px;
     border-radius: 5px;
-
 }
 
 .main {
@@ -145,6 +135,17 @@ body {
     opacity: 0;
 }
 
+.box-mission-done.slide-down {
+    max-height: 1000px;
+    /* Giá trị lớn để chứa nội dung, tránh cắt */
+    opacity: 1;
+}
+
+.box-mission-done.slide-up {
+    max-height: 0;
+    opacity: 0;
+}
+
 .avatar-img {
     width: 30px;
     height: 30px;
@@ -156,17 +157,6 @@ body {
     margin-bottom: 20px;
 }
 
-.box-mission-done.slide-down {
-    max-height: 500px;
-    /* Điều chỉnh giá trị này phù hợp với nội dung thực tế */
-    opacity: 1;
-}
-
-.box-mission-done.slide-up {
-    max-height: 0;
-    opacity: 0;
-}
-
 #box-header {
     display: flex;
     align-items: center;
@@ -175,6 +165,20 @@ body {
     position: relative;
     z-index: 2;
     justify-content: space-between;
+}
+
+#box-header.fixed {
+    position: sticky;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 999;
+    background-color: #2a2a2a;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+#box-header .btn {
+    font-size: 20px;
 }
 
 .drop-down-user {
@@ -189,25 +193,9 @@ body {
     box-shadow: 0px 5px 5px rgb(84 79 79);
 }
 
-#box-header.fixed {
-    position: sticky;
-    top: 0;
-    left: 0;
-    right: 0;
-    z-index: 999;
-    background-color: #2a2a2a;
-    /* hoặc màu bạn muốn */
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
-    /* bóng nhẹ */
-}
-
-#box-header .btn {
-    font-size: 20px;
-}
-
 .sidebar .box-tree {
     border-radius: 10px;
-    width: 75%;
+    width: 100%;
     position: absolute;
     top: 0;
     right: 0;
@@ -217,15 +205,6 @@ body {
 .sidebar .box:nth-child(1) {
     height: 25%;
 }
-
-/* .dots::before{
-    content:"";
-    width: 50px;
-    height: 50px;
-    position: absolute;
-    top:10px;
-    background:red;
-} */
 
 .sidebar .box:nth-child(2) {
     flex: 1;
@@ -238,7 +217,9 @@ body {
     gap: 10px;
 }
 
-.box-mission-delete {
+.box-mission-delete,
+.box-mission-add,
+.box-mission-fix {
     width: 24px;
     height: 24px;
     background-color: #3498db;
@@ -257,11 +238,31 @@ body {
     transform: translate(-50%, -50%);
 }
 
+.box-mission-add::before {
+    content: "+";
+    color: white;
+    font-size: 18px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.box-mission-fix::before {
+    content: "⚙";
+    color: white;
+    font-size: 18px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
 .mission-descript {
     display: flex;
     align-items: center;
     gap: 3px;
-    margin: 5px 0px;
+    margin: 5px 0;
 }
 
 .task-mission {
@@ -272,15 +273,25 @@ body {
     position: relative;
 }
 
+.task-mission::after {
+    content: "";
+    width: 100%;
+    height: 2px;
+    position: absolute;
+    background-color: #f2f3f42b;
+    bottom: -10px;
+    left: 0;
+}
+
 .fade-slide {
     opacity: 0;
     transform: translateX(50px);
     transition: all 0.3s ease;
 }
 
-/* Slide toggle xuống/up */
 .slide-down {
     max-height: 1000px;
+    /* Giá trị lớn để chứa nội dung */
     opacity: 1;
     transition: all 0.5s ease;
 }
@@ -297,17 +308,6 @@ body {
     cursor: pointer;
 }
 
-.task-mission::after {
-    content: "";
-    width: 100%;
-    height: 2px;
-    position: absolute;
-    background-color: #f2f3f42b;
-    bottom: -10px;
-    left: 0;
-
-}
-
 .box-left {
     background-color: #2a2a2a;
     border-radius: 10px;
@@ -315,10 +315,15 @@ body {
     color: #fff;
     position: relative;
     height: 100%;
-    max-height: 560px;
+    max-height: 80vh;
+    /* Thay 560px bằng 80vh để responsive */
     overflow-y: auto;
     scrollbar-width: none;
-    /* Ẩn scrollbar Firefox */
+}
+
+.box-left::-webkit-scrollbar {
+    display: none;
+    /* Ẩn scrollbar cho Chrome/Safari */
 }
 
 .box #box-header {
@@ -329,7 +334,6 @@ body {
     color: black;
     font-size: 15px;
     font-weight: 700;
-
 }
 
 .dotlist {
@@ -353,7 +357,6 @@ body {
 .strikethrough {
     text-decoration: line-through;
 }
-
 
 .sidebar .box .mission {
     padding: 10px;
@@ -396,19 +399,6 @@ body {
     height: 200px;
 }
 
-.circle {
-    width: 30px;
-    height: 30px;
-    background-color: #555;
-    border-radius: 50%;
-}
-
-.dots {
-    display: flex;
-    gap: 5px;
-
-}
-
 .dot {
     width: 10px;
     height: 10px;
@@ -416,19 +406,9 @@ body {
     border-radius: 50%;
 }
 
-/* Popup add sidebar */
-.popup-container-mission-add {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(0, 0, 0, 0.3);
+.dots {
     display: flex;
-    justify-content: center;
-    align-items: center;
-    z-index: 999;
-    animation: fadeIn 0.3s ease-in-out;
+    gap: 5px;
 }
 
 .popup-mission-add {
@@ -458,110 +438,38 @@ body {
     border-radius: 5px;
     border: 1px solid #2eb1c421;
     height: 40px;
+    background-color: #f9f9f9;
+    padding-left: 10px;
 }
 
 .form-control::placeholder {
     color: #1a1a1a70;
 }
 
-.mission-cancel {
-    width: fit-content;
-    border-radius: 10px;
-    border: 1px solid #00000052;
-    padding: 0 20px;
-    padding-top: 10px;
-    padding-bottom: 10px;
-    box-shadow: 0px 4px 4px rgb(81 176 14 / 30%);
-    position: relative;
-    overflow: hidden;
-
-}
-
+.mission-cancel,
 .mission-add-btn {
     width: fit-content;
     border-radius: 10px;
     border: 1px solid #00000052;
-    background: linear-gradient(134deg, #FFCDDA 2.01%, #9ce50d 100%);
-    display: flex;
-    align-items: center;
-    padding: 0 20px;
-    padding-top: 10px;
-    padding-bottom: 10px;
+    padding: 10px 20px;
     box-shadow: 0px 4px 4px rgb(81 176 14 / 30%);
     position: relative;
     overflow: hidden;
-
 }
 
-input.form-control {
-    background-color: #f9f9f9;
-    /* Nền */
-    letter-spacing: 1px;
-    padding-left: 10px
-}
-
-@keyframes fadeIn {
-    from {
-        opacity: 0;
-        transform: scale(0.95);
-    }
-
-    to {
-        opacity: 1;
-        transform: scale(1);
-    }
-}
-
-.box-mission-add {
-    width: 24px;
-    height: 24px;
-    background-color: #3498db;
-    border-radius: 50%;
-    cursor: pointer;
-    position: relative;
-}
-
-.box-mission-add::before {
-    content: "+";
-    color: white;
-    font-size: 18px;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-}
-
-.box-mission-fix::before {
-    content: "⚙";
-    color: white;
-    font-size: 18px;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-}
-
-.box-mission-fix {
-    width: 24px;
-    height: 24px;
-    background-color: #3498db;
-    border-radius: 50%;
-    cursor: pointer;
-    position: relative;
+.mission-add-btn {
+    background: linear-gradient(134deg, #FFCDDA 2.01%, #9ce50d 100%);
 }
 
 .mission-list {
-    max-height: 200px;
+    max-height: 50vh;
+    /* Thay 200px bằng 50vh để responsive */
     margin-bottom: 1rem;
-    overflow-y: scroll;
+    overflow-y: auto;
     scrollbar-width: none;
-    /* Firefox */
-    -ms-overflow-style: none;
-    /* IE/Edge */
 }
 
-.mission-list::-webkit-scrollbar-track {
-
+.mission-list::-webkit-scrollbar {
     display: none;
 }
 
@@ -576,4 +484,263 @@ input.form-control {
 
 .mission-item:hover {
     background: #ddd;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: scale(0.95);
+    }
+
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+/* Media Queries cho các kích thước màn hình */
+@media (max-width: 992px) {
+    .container {
+        flex-direction: column;
+        height: auto;
+        gap: 15px;
+        padding: 10px;
+    }
+
+    .home-container {
+        flex-direction: column;
+        height: auto;
+        gap: 10px;
+    }
+
+    .sidebar,
+    .right-panel {
+        flex: none;
+        width: 100%;
+    }
+
+    .main {
+        flex: none;
+        width: 100%;
+    }
+
+    .box-left {
+        max-height: 60vh;
+        /* Giảm max-height cho tablet */
+    }
+
+    .mission-list {
+        max-height: 40vh;
+    }
+}
+
+@media (max-width: 739px) {
+
+    .sidebar,
+    .right-panel,
+    .chat-room h2 {
+        display: none;
+    }
+
+    .chat-partner-info {
+        justify-content: center;
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    .message.self .text {
+        width: 100% !important;
+    }
+
+    .partner-avatar {
+        margin-right: 0 !important;
+    }
+
+    .name-user,
+    .partner-name {
+        color: #4A2C2A;
+    }
+
+    .chat-room {
+        max-width: 100%;
+        background: #F5F5F5;
+        background: linear-gradient(169deg, rgba(245, 245, 245, 1) 0%, rgba(228, 182, 192, 1) 75%, rgba(193, 140, 148, 1) 100%);
+    }
+
+    body {
+        background: #F5F5F5;
+        background: linear-gradient(169deg, rgba(245, 245, 245, 1) 0%, rgba(228, 182, 192, 1) 75%, rgba(193, 140, 148, 1) 100%);
+    }
+
+    .message {
+        max-width: 70% !important;
+        font-size: 12px;
+    }
+
+    .messages-container {
+        max-height: 80vh !important;
+    }
+
+    .box {
+        padding: 10px;
+        border-radius: 8px;
+    }
+
+    .header {
+        background: #F5F5F5;
+        background: linear-gradient(169deg, rgba(245, 245, 245, 1) 0%, rgba(228, 182, 192, 1) 75%, rgba(193, 140, 148, 1) 100%);
+        padding: 8px 15px;
+        font-size: 1rem;
+    }
+
+    .footer {
+        flex-direction: column;
+        height: auto;
+        gap: 8px;
+    }
+
+    .footer .box {
+        width: 100%;
+    }
+
+    .popup-container-mission-add,
+    .popup-container-update {
+        padding: 10px;
+    }
+
+    .popup-mission-add {
+        min-width: 90%;
+        padding: 15px;
+        border-radius: 8px;
+    }
+
+    .form-control {
+        height: 35px;
+        font-size: 14px;
+        margin: 10px 0;
+    }
+
+    .mission-add-btn,
+    .mission-cancel {
+        padding: 8px 15px;
+        font-size: 14px;
+    }
+
+    .mission-list {
+        max-height: 35vh;
+        /* Giảm thêm cho mobile nhỏ */
+    }
+
+    .mission-item {
+        padding: 6px;
+        font-size: 14px;
+    }
+
+    .avatar-img {
+        width: 30px;
+        height: 30px;
+        margin-bottom: 0;
+    }
+
+    .mission-title {
+        font-size: 1.1rem;
+    }
+
+    .mission-descript {
+        font-size: 0.9rem;
+        gap: 2px;
+    }
+
+    .task-mission {
+        gap: 8px;
+        margin: 10px 0;
+
+    }
+    .avatar-upload-container{
+        background: #F5F5F5;
+    }
+
+    .Update-img {
+        background: #F5F5F5;
+        background: linear-gradient(169deg, rgba(245, 245, 245, 1) 0%, rgba(228, 182, 192, 1) 75%, rgba(193, 140, 148, 1) 100%);
+    }
+
+    .drop-down-user {
+        background: #e8c2ca;
+        color: #4A2C2A;
+    }
+
+    .box-mission-add,
+    .box-mission-delete,
+    .box-mission-fix {
+        width: 20px;
+        height: 20px;
+    }
+
+    .box-mission-add::before,
+    .box-mission-delete::before,
+    .box-mission-fix::before {
+        font-size: 14px;
+    }
+
+    .drop-down-user {
+        bottom: -45px;
+    }
+
+    .drop-down-user-list {
+        gap: 3px;
+    }
+
+    .drop-down-update-user,
+    .drop-down-logout-user {
+        padding: 4px;
+        font-size: 14px;
+    }
+
+    #box-header {
+        font-size: 14px;
+        gap: 20px;
+        padding: 10px;
+    }
+
+    #box-header .btn {
+        font-size: 16px;
+    }
+
+    .content-mission {
+        gap: 15px;
+    }
+
+    .box-left {
+        max-height: 50vh;
+        /* Tối ưu cho mobile */
+    }
+
+    .dotlist {
+        gap: 3px;
+    }
+
+    .task-tick,
+    .dot {
+        width: 8px;
+        height: 8px;
+    }
+
+    .main-content {
+        font-size: 1.5rem;
+    }
+
+    .useInfor {}
+
+}
+
+@media (max-width: 576px) {
+    .box-left {
+        max-height: 40vh;
+        /* Giảm thêm cho màn hình rất nhỏ */
+    }
+
+    .mission-list {
+        max-height: 30vh;
+    }
 }

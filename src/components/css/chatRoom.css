@@ -14,6 +14,11 @@
   border-radius: 8px;
 }
 
+
+
+.messages-container-background{
+  position: relative;
+}
 .messages-container {
   max-height: 473px;
   scrollbar-width: none;
@@ -25,7 +30,16 @@
   border: 1px solid #ddd;
   border-radius: 4px;
   margin-bottom: 10px;
+  position: relative;
+  background: transparent; /* không nền */
+  z-index: 0;
+
 }
+.messages-container > * {
+    position: relative;
+    z-index: 1;
+}
+
 
 .messages-container::-webkit-scrollbar {
   display: none;
@@ -53,7 +67,8 @@
 
 .message.self .text {
   text-align: left;
-  background: #007bff;
+  background: #C18C94;
+  color: #ffffff;
   border-radius: 15px;
   padding: 15px;
   width: fit-content;
@@ -71,9 +86,37 @@
 .message.other .text {
   text-align: left;
   padding: 15px;
-  background: gray;
+
+  /* Background và border-radius */
+  background: #F8E8EB;
+  color: #4A2C2A;
   border-radius: 15px;
+
+  /* Kiểm soát chiều rộng */
   width: fit-content;
+  /* Tự động điều chỉnh theo nội dung */
+  max-width: 100%;
+  /* Giới hạn tối đa để tránh tràn màn hình */
+  word-wrap: break-word;
+  /* Ngăn tràn chữ nếu quá dài */
+  white-space: pre-wrap;
+  /* Giữ định dạng và xuống dòng */
+
+  /* Hỗ trợ WebKit */
+  -webkit-border-radius: 15px;
+  /* Tiền tố cho WebKit (tùy chọn, hiện nay ít cần) */
+  -webkit-box-sizing: border-box;
+  /* Tính padding vào kích thước */
+  -webkit-user-select: text;
+  /* Cho phép chọn văn bản trên WebKit */
+
+  /* Tương thích đa trình duyệt */
+  box-sizing: border-box;
+  /* Chuẩn W3C */
+  -moz-box-sizing: border-box;
+  /* Firefox */
+  user-select: text;
+  /* Chuẩn */
 }
 
 .sender {
@@ -183,6 +226,7 @@
 .input-container {
   position: relative;
 }
+
 .chat-partner-info {
   display: flex;
   align-items: center;
@@ -200,10 +244,32 @@
 .partner-name {
   font-weight: bold;
 }
+
 .online-dot {
   width: 10px;
   height: 10px;
   background-color: green;
   border-radius: 50%;
   margin-left: 5px;
+}
+
+@media (max-width: 739px) {
+  .send-button {
+    display: none;
+  }
+  .input-container .form-control{
+    margin:0;
+    margin-top:20px;
+  }
+  .messages-container-background::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    background: url('../../images/imgPublic/1744896_6499d.gif') no-repeat;
+    z-index: 0;
+    pointer-events: none;
+}
 }
